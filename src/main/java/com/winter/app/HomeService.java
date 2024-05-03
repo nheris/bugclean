@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.winter.app.board.BoardVO;
+import com.winter.app.employee.EmployeeVO;
 import com.winter.app.humanResource.AttendanceVO;
 
 @Service
@@ -47,6 +48,10 @@ public class HomeService {
 	public boolean isWorkOut(AttendanceVO attendanceVO) {
 		boolean isWorkOut = homeDAO.isWorkOut(attendanceVO);
 		return isWorkOut;
+	}
+	//사번조회
+	public EmployeeVO getnameAsk(EmployeeVO employeeVO) {
+		return homeDAO.getnameAsk(employeeVO);
 	}
 	
 

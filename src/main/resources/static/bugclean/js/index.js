@@ -51,7 +51,7 @@ let isContentVisible = false;
 function getInfo(id){
 	
     sch_Id = id.substring(id.lastIndexOf('-')+1,id.length);
-    console.log("id====",sch_Id);
+    //console.log("id====",sch_Id);
     fetch("/schedule/getSchedule",{
         method : "POST",
         headers: {
@@ -63,18 +63,36 @@ function getInfo(id){
     }).then(res=>res.json())
     .then(res=>{
         //console.log("res====",res);
-
+		
         content.style.display = "block";
 
-        document.addEventListener("DOMContentLoaded", function() {
-            
-            if (res.business_Name === '개인') {
-                //document.getElementById("buisnessman").innerText = "사업자 구분";
-            }
-        });
+        // let employee_Num;
+        // if (res.employee_Num != null) {
+        //     fetch("/getnameAsk", {
+        //         method: "POST",
+        //         headers:{
+        //             "Content-type":"application/x-www-form-urlencoded"
+        //         },
+        //         body: "employee_num="+res.employee_Num
+        //     }).then(res => res.text())
+        //       .then(res => {
+        //           alert(res);
+        //           //employee_Num= res;
+        //       })
+        // }else if(res.employee_Num === null) manage_Code ="-";
+        
+        
+
+        //현장관리자(employee_Num), 영업 담당자(sales_Manager)
+       
+        if (res.business_Name === '개인') {
+			$('#buisnessman').html(`사업자 구분 <span class="pull-right">:</span>`);
+        }else $('#buisnessman').html(`사업자 이름 <span class="pull-right">:</span>`);
         
 		const manage_Code = res.manage_Code !== null ? res.manage_Code : "-";
-		const employee_Num = res.employee_Num !== null ? res.employee_Num : "-";
+
+		//const employee_Num = res.employee_Num !== null ? res.employee_Num : "-";
+        //let sales_Manager = 
 		
         $('#site_Num span').text(`${res.site_Num}`);
         $('#customer_Num span').text(`${res.customer_Num}`);
@@ -153,11 +171,11 @@ function getInfo(id){
 
 function openWindow(e){
     let param
-    console.log("e === == " , e);
+    //console.log("e === == " , e);
     param = e;
     if(e == null || e =='undefined'){
         param  = "";
-        console.log("null or undef")
+        //console.log("null or undef")
     } 
     fetch("/schedule/getList?search="+param,{
         method : "GET"
@@ -168,14 +186,14 @@ function openWindow(e){
              event.remove();
             });
 
-            console.log("h2");
-            console.log("test = ",res);
+            //console.log("h2");
+            //console.log("test = ",res);
             res.forEach(element => {
-               console.log("start = ", element.start_Time);
+               //console.log("start = ", element.start_Time);
                
                start_first = element.start_Time.substr(0,10);
-               console.log("start_first = ", start_first);
-               console.log("site_Num === ", element.site_Num)
+               //console.log("start_first = ", start_first);
+               //console.log("site_Num === ", element.site_Num)
                let start_last = element.start_Time.substring(11,19);
                 
                 if(element.site_Type == '긴급'){
@@ -193,7 +211,7 @@ function openWindow(e){
                     color = 'blue';
                     textDeco = 'none';
                 }
-                console.log("color == ", color);
+                //console.log("color == ", color);
                   calendar.addEvent({
                    title : element.business_Name  + element.ceo_Name,
                    start : start_first +"T"+ start_last,
@@ -218,7 +236,6 @@ document.addEventListener("DOMContentLoaded", function() {
     let closeButton = document.getElementById("closeButton");
 
     closeButton.addEventListener("click", function() {
-		//alert("클릭됨?");
         content.style.display = "none";
     });
 });

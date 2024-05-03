@@ -121,7 +121,12 @@ public class HomeController {
     	return "commons/result";
 	}
     
-    
+    //사번조회~
+    @PostMapping("getnameAsk")
+    public String getnameAsk(EmployeeVO employeeVO) throws Exception {
+    	employeeVO = homeService.getnameAsk(employeeVO);
+    	return employeeVO.getName();
+    }
     
 
     

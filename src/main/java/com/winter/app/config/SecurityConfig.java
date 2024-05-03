@@ -87,6 +87,7 @@ public class SecurityConfig{
 				.ignoringRequestMatchers("/setWorkOut")
 				.ignoringRequestMatchers("/employee/idSearchNum")
 				.ignoringRequestMatchers("/employee/phoneSend")
+				.ignoringRequestMatchers("/getnameAsk")
 				.ignoringRequestMatchers("/employee/**")
 	    )
 		

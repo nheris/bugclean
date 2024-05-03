@@ -60,4 +60,7 @@
 		FROM ATTENDANCE
 		WHERE TRUNC(ATTEND_DATE) = TRUNC(CURRENT_DATE) AND EMPLOYEE_NUM =#{employee_num}
 	</select>
+	<select id="getnameAsk" parameterType="EmployeeVO" resultType="EmployeeVO">
+		SELECT NAME FROM EMPLOYEE e WHERE EMPLOYEE_NUM = #{employee_num}
+	</select>
 </mapper>

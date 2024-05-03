@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 
 import com.winter.app.board.BoardVO;
+import com.winter.app.employee.EmployeeVO;
 import com.winter.app.humanResource.AttendanceVO;
 
 @Mapper
@@ -23,5 +24,7 @@ public interface HomeDAO {
 	public boolean isAttended(AttendanceVO attendanceVO);
 
 	public boolean isWorkOut(AttendanceVO attendanceVO);
+
+	public EmployeeVO getnameAsk(EmployeeVO employeeVO);
 
 }
